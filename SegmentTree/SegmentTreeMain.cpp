@@ -86,10 +86,10 @@ int main()
     SegmentTree<int>
         segTree = SegmentTree<int>(arr, mergeFunction, identity_val);
 
-    std::cout << "Q: 0,8: " << segTree.query(0, 9) << " <- Got. Expecting -> 45\n";
+    std::cout << "Q: 0,8: " << segTree.query(0, 8) << " <- Got. Expecting -> 45\n";
     std::cout << "Q: 3,5: " << segTree.query(3, 5) << " <- Got. Expecting -> 15\n";
     segTree.update(4, 10);
-    std::cout << "Q: 0,8: " << segTree.query(0, 9) << " <- Got. Expecting -> 50\n";
+    std::cout << "Q: 0,8: " << segTree.query(0, 8) << " <- Got. Expecting -> 50\n";
     std::cout << "Q: 3,5: " << segTree.query(3, 5) << " <- Got. Expecting -> 20\n";
 
     return 0;
