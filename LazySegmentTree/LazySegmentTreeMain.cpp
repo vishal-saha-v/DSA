@@ -50,6 +50,7 @@ private:
                 lazy[2 * i + 1] += lazy[i];
                 lazy[2 * i + 2] += lazy[i];
             }
+            lazy[i] = 0;
         }
 
         if (qend < start || end < qstart)
@@ -72,6 +73,7 @@ private:
                 lazy[2 * i + 1] += lazy[i];
                 lazy[2 * i + 2] += lazy[i];
             }
+            lazy[i] = 0;
         }
 
         if (qend < start || end < qstart)
@@ -101,10 +103,10 @@ int main()
 
     LazySegmentTree lazySegTree(arr);
 
-    std::cout << "Q: 0,8: " << lazySegTree.query(0, 9) << " <- Got. Expecting -> 45\n";
+    std::cout << "Q: 0,8: " << lazySegTree.query(0, 8) << " <- Got. Expecting -> 45\n";
     std::cout << "Q: 3,5: " << lazySegTree.query(3, 5) << " <- Got. Expecting -> 15\n";
     lazySegTree.update(4, 5, 2);
-    std::cout << "Q: 0,8: " << lazySegTree.query(0, 9) << " <- Got. Expecting -> 49\n";
+    std::cout << "Q: 0,8: " << lazySegTree.query(0, 8) << " <- Got. Expecting -> 49\n";
     std::cout << "Q: 3,5: " << lazySegTree.query(3, 5) << " <- Got. Expecting -> 19\n";
 
     return 0;
