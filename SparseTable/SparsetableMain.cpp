@@ -1,5 +1,4 @@
 #include <iostream>
-#include <math.h>
 #include <vector>
 
 // Max Sparse table.
@@ -9,7 +8,8 @@ public:
     SparseTable(std::vector<int> &arr)
     {
         size = arr.size();
-        int levels = (int)log2(size);
+        initLog();
+        int levels = log2[size];
         sTable.resize(levels + 1);
         construct(arr);
     }
@@ -17,11 +17,23 @@ public:
     int query(int qstart, int qend)
     {
         int length = qend - qstart + 1;
-        int level = (int)log2(length);
+        int level = log2[length];
         return std::max(sTable[level][qstart], sTable[level][qend - (1 << level) + 1]);
     }
 
 private:
+    void initLog()
+    {
+        if (log2.empty() == false)
+            return;
+        log2.resize(size + 1);
+        log2[1] = 0;
+        for (int i = 2; i <= size; i++)
+        {
+            log2[i] = log2[i / 2] + 1;
+        }
+    }
+
     void construct(std::vector<int> &arr)
     {
         sTable[0] = arr;
@@ -37,6 +49,8 @@ private:
 
     size_t size;
     std::vector<std::vector<int>> sTable;
+    // This also defines the vector. Be careful to not redefine it in the same translation unit.
+    inline static std::vector<int> log2;
 };
 
 int main()
